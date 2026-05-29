@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASUS 2026 Q1 Financial Report & Insights</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090b11;
+      --card-bg: rgba(17, 22, 34, 0.7);
+      --card-border: rgba(255, 255, 255, 0.06);
+      --primary: #6366f1;
+      --primary-glow: rgba(99, 102, 241, 0.15);
+      --secondary: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --up-color: #ef4444;
+      --down-color: #10b981;
+      --warn-color: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Masthead */
+    .masthead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+    }
+
+    .brand-title h1 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      background: linear-gradient(to right, #a5b4fc, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-title p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .badge {
+      padding: 6px 12px;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 99px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 12px 20px -10px var(--primary-glow);
+    }
+
+    .kpi-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .kpi-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .kpi-delta {
+      font-size: 12px;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .delta-up { color: #f87171; }
+    .delta-down { color: #34d399; }
+    .delta-neutral { color: var(--text-muted); }
+
+    /* Executive Insights Box */
+    .insights-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: inset 0 0 12px rgba(99, 102, 241, 0.05);
+    }
+
+    .insights-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+    }
+
+    .insights-title svg {
+      color: var(--primary);
+    }
+
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .insight-column h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .insight-column ul {
+      list-style-type: none;
+    }
+
+    .insight-column li {
+      font-size: 13px;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      line-height: 1.6;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .insight-column li::before {
+      content: "▪";
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+      font-size: 10px;
+      top: 1px;
+    }
+
+    .insight-column.risk li::before {
+      color: var(--up-color);
+    }
+
+    .insight-column.action li::before {
+      color: var(--secondary);
+    }
+
+    /* Visual Charts Section */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 24px;
+    }
+
+    .chart-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .chart-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .chart-legend {
+      display: flex;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .legend-color {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .chart-content {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .chart-caption {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--card-border);
+      padding-top: 12px;
+    }
+
+    .chart-caption ul {
+      list-style-type: none;
+      padding-left: 4px;
+    }
+
+    .chart-caption li {
+      margin-bottom: 6px;
+      position: relative;
+      padding-left: 12px;
+    }
+
+    .chart-caption li::before {
+      content: "•";
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+    }
+
+    /* Tables Section */
+    .tables-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 24px;
+    }
+
+    .table-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      overflow-x: auto;
+    }
+
+    .table-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    th {
+      color: var(--text-muted);
+      font-weight: 500;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .highlight-row {
+      background: rgba(99, 102, 241, 0.04);
+      font-weight: 600;
+    }
+
+    .segment-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .badge-enterprise { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+    .badge-gamer { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+    .badge-consumer { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+
+    /* Outlook Box */
+    .outlook-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .outlook-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .outlook-text {
+      font-size: 13px;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .outlook-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      border-top: 1px solid var(--card-border);
+      padding-top: 16px;
+    }
+
+    .outlook-item {
+      font-size: 12px;
+    }
+
+    .outlook-label {
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .outlook-val {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .signature-line {
+      border-top: 1px dashed var(--text-muted);
+      width: 120px;
+      margin-top: 16px;
+      padding-top: 4px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 12px;
+      }
+      .charts-grid {
+        grid-template-columns: 1fr;
+      }
+      .tables-grid {
+        grid-template-columns: 1fr;
+      }
+      .insights-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Masthead -->
+    <header class="masthead">
+      <div class="brand-title">
+        <h1>ASUSTeK COMPUTER INC.</h1>
+        <p>2026 Q1 財務成果報告書 (未審計合併品牌數據)</p>
+      </div>
+      <div class="badge">Confidential — Finance</div>
+    </header>
+
+    <!-- KPI Strip -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">本季合併營收 (Revenue)</div>
+        <div class="kpi-value">$60.64 億</div>
+        <div class="kpi-delta">
+          <span class="delta-up">▲ +43.5% YoY</span>
+          <span class="delta-neutral">| QoQ +2.2%</span>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">營業利益 (Operating Profit)</div>
+        <div class="kpi-value">$3.28 億</div>
+        <div class="kpi-delta">
+          <span class="delta-up">▲ +72.2% YoY (Adj)</span>
+          <span class="delta-neutral">| QoQ +30.1%</span>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">營業毛利率 (Gross Margin)</div>
+        <div class="kpi-value">13.8 %</div>
+        <div class="kpi-delta">
+          <span class="delta-down">▼ -1.7% YoY</span>
+          <span class="delta-neutral">| QoQ -1.0%</span>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">現金與約當現金 (Cash)</div>
+        <div class="kpi-value">$13.38 億</div>
+        <div class="kpi-delta">
+          <span class="delta-down">▼ -43.0% QoQ</span>
+          <span class="delta-neutral">| DIO: 122天</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Executive Insights Section -->
+    <section class="insights-card">
+      <div class="insights-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        <span>財務分析師精煉洞察與對我方策略啟示</span>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-column">
+          <h3>一、 核心營運與獲利表現</h3>
+          <ul>
+            <li><strong>營收創歷史高</strong>：本季 60.64 億美元（YoY +44%），得益於 Enterprise（Server）業務爆發（YoY +190%）與商用 PC（YoY +60%）填補消費性 PC 淡季缺口。</li>
+            <li><strong>毛利率下滑</strong>：滑落至 13.8%（YoY -1.7pp），主因低毛利的系統整合型伺服器營收比重大幅上升（占營收 37%），帶來產品組合稀釋。</li>
+            <li><strong>利潤率改善</strong>：營業利益率（OPM）攀升至 5.4%（QoQ +1.1pp），主要受益於年末費用集中效應結束，營業費用率（OPEX）回落至 8.4%。</li>
+          </ul>
+        </div>
+        <div class="insight-column risk">
+          <h3>二、 財務結構與營運效率風險</h3>
+          <ul>
+            <li><strong>現金大幅消耗</strong>：現金及約當現金大跌 43% 至 13.38 億美元（占資產 7%），降至近年低點。</li>
+            <li><strong>庫存水位高企</strong>：高達 77.22 億美元資金積壓在存貨（QoQ +33%），使存貨週轉天數（DIO）拉長至 122 天，為 2Q26 伺服器放量進行前置備料。</li>
+            <li><strong>帳期結構調整</strong>：應付帳款天數（DPO）拉長至 70 天（YoY +12 天），顯示公司正向供應商融通資金以緩解現金流壓力。</li>
+          </ul>
+        </div>
+        <div class="insight-column action">
+          <h3>三、 對我方公司的營運啟示</h3>
+          <ul>
+            <li><strong>降價空間受限</strong>：ASUS 毛利已降至 13.8% 低水位，對手 PC 降價搶單空間有限。我方應避開低毛利伺服器大單競爭，專注高階溢價 PC 生態系。</li>
+            <li><strong>防禦型財務窗口</strong>：ASUS 現金占總資產比僅剩 7% 且負債比率達 53.1%，財務彈性受限。若我方現金充足，應乘虛在通路發動中高階產品促銷。</li>
+            <li><strong>供應鏈排擠防範</strong>：ASUS 大規模備料並延後付款（DPO 70天），可能排擠共同供應商的產能與資金。我方需警惕共同供應鏈的交期延遲風險。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Charts Section -->
+    <section class="charts-grid">
+      <!-- Chart 1: Revenue Trend -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">近三季度營收趨勢 (億美元)</div>
+          <div class="chart-legend">
+            <div class="legend-item">
+              <div class="legend-color" style="background: var(--primary);"></div>
+              <span>季度營收</span>
+            </div>
+          </div>
+        </div>
+        <div class="chart-content">
+          <svg viewBox="0 0 500 220" width="100%" height="220">
+            <!-- Grid Lines -->
+            <line x1="50" y1="30" x2="450" y2="30" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3"/>
+            <line x1="50" y1="90" x2="450" y2="90" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3"/>
+            <line x1="50" y1="150" x2="450" y2="150" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3"/>
+            
+            <!-- Axes labels -->
+            <text x="40" y="35" fill="var(--text-muted)" font-size="10" text-anchor="end">60 億</text>
+            <text x="40" y="95" fill="var(--text-muted)" font-size="10" text-anchor="end">40 億</text>
+            <text x="40" y="155" fill="var(--text-muted)" font-size="10" text-anchor="end">20 億</text>
+
+            <!-- Line area gradient -->
+            <defs>
+              <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="var(--primary)" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Area Path -->
+            <path d="M 80 180 L 80 87 L 250 36 L 420 32 L 420 180 Z" fill="url(#areaGrad)"/>
+
+            <!-- Line Path -->
+            <path d="M 80 87 L 250 36 L 420 32" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round"/>
+
+            <!-- Dots -->
+            <circle cx="80" cy="87" r="5" fill="#fff" stroke="var(--primary)" stroke-width="2"/>
+            <circle cx="250" cy="36" r="5" fill="#fff" stroke="var(--primary)" stroke-width="2"/>
+            <circle cx="420" cy="32" r="5" fill="#fff" stroke="var(--primary)" stroke-width="2"/>
+
+            <!-- Data Labels -->
+            <text x="80" y="70" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">$42.25 億</text>
+            <text x="250" y="20" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">$59.32 億</text>
+            <text x="420" y="16" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">$60.64 億</text>
+
+            <!-- X Labels -->
+            <text x="80" y="205" fill="var(--text-muted)" font-size="11" text-anchor="middle">2025 Q1</text>
+            <text x="250" y="205" fill="var(--text-muted)" font-size="11" text-anchor="middle">2025 Q4</text>
+            <text x="420" y="205" fill="var(--text-muted)" font-size="11" text-anchor="middle">2026 Q1</text>
+            
+            <line x1="50" y1="180" x2="450" y2="180" stroke="rgba(255,255,255,0.1)"/>
+          </svg>
+        </div>
+        <div class="chart-caption">
+          <ul>
+            <li>季度營收達 60.64 億美元，YoY 攀升 44.0%，創單季歷史新高。</li>
+            <li>成長主要來自 Enterprise（Server）事業部，填補了 PC 的季節性放緩。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Chart 2: Cost & Profit Structure -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">2026 Q1 營收成本與利潤結構占比</div>
+          <div class="chart-legend">
+            <div class="legend-item">
+              <div class="legend-color" style="background: rgba(255,255,255,0.15);"></div>
+              <span>銷貨成本</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: var(--primary);"></div>
+              <span>營業費用</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: var(--secondary);"></div>
+              <span>營業利益</span>
+            </div>
+          </div>
+        </div>
+        <div class="chart-content">
+          <svg viewBox="0 0 500 220" width="100%" height="220">
+            <!-- 100% Bar Chart -->
+            <rect x="50" y="80" width="400" height="40" rx="6" fill="#1e293b"/>
+            
+            <!-- COGS Bar (86.2%) -->
+            <rect x="50" y="80" width="344.8" height="40" rx="4" fill="rgba(255,255,255,0.15)"/>
+            <!-- OPEX Bar (8.4%) -->
+            <rect x="394.8" y="80" width="33.6" height="40" fill="var(--primary)"/>
+            <!-- Operating Profit Bar (5.4%) -->
+            <rect x="428.4" y="80" width="21.6" height="40" rx="4" fill="var(--secondary)"/>
+
+            <!-- Labels -->
+            <!-- COGS -->
+            <text x="222" y="105" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">銷貨成本: 86.2%</text>
+            <line x1="222" y1="110" x2="222" y2="150" stroke="rgba(255,255,255,0.3)"/>
+            <text x="222" y="165" fill="var(--text-muted)" font-size="11" text-anchor="middle">$52.29 億</text>
+
+            <!-- OPEX -->
+            <line x1="411" y1="80" x2="411" y2="40" stroke="var(--primary)" stroke-width="1"/>
+            <text x="411" y="30" fill="var(--primary)" font-size="11" font-weight="600" text-anchor="middle">費用: 8.4%</text>
+            <text x="411" y="15" fill="var(--text-muted)" font-size="10" text-anchor="middle">($5.06 億)</text>
+
+            <!-- OP -->
+            <line x1="439" y1="120" x2="439" y2="150" stroke="var(--secondary)" stroke-width="1"/>
+            <text x="439" y="165" fill="var(--secondary)" font-size="11" font-weight="600" text-anchor="middle">利潤: 5.4%</text>
+            <text x="439" y="180" fill="var(--text-muted)" font-size="10" text-anchor="middle">($3.28 億)</text>
+          </svg>
+        </div>
+        <div class="chart-caption">
+          <ul>
+            <li>銷貨成本占比 (86.2%) 高企，導致營業毛利率自前季之 14.8% 稀釋至 13.8%。</li>
+            <li>營業利益率 (5.4%) QoQ 上升 1.1pp，主要因年末費用回落，營業費用率顯著降至 8.4%。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tables Section -->
+    <section class="tables-grid">
+      <!-- Table 1: P&L Summary -->
+      <div class="table-card">
+        <div class="table-title">簡明損益表比較 (億美元)</div>
+        <table>
+          <thead>
+            <tr>
+              <th>會計項目</th>
+              <th>2026 Q1</th>
+              <th>2025 Q4</th>
+              <th>2025 Q1</th>
+              <th>YoY %</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>合併營業收入</td>
+              <td><strong>$60.64</strong></td>
+              <td>$59.32</td>
+              <td>$42.25</td>
+              <td class="delta-up">+44.0%</td>
+            </tr>
+            <tr>
+              <td>銷貨成本 (COGS)</td>
+              <td>($52.29)</td>
+              <td>($50.55)</td>
+              <td>($35.69)</td>
+              <td class="delta-up">+46.5%</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>營業毛利</td>
+              <td><strong>$8.35</strong></td>
+              <td>$8.77</td>
+              <td>$6.55</td>
+              <td class="delta-up">+27.5%</td>
+            </tr>
+            <tr>
+              <td>營業費用 (OPEX)</td>
+              <td>($5.06)</td>
+              <td>($6.25)</td>
+              <td>($2.98)*</td>
+              <td class="delta-up">+69.8%</td>
+            </tr>
+            <tr class="highlight-row" style="background: rgba(16, 185, 129, 0.04);">
+              <td>營業利益 (OP)</td>
+              <td><strong>$3.28</strong></td>
+              <td>$2.52</td>
+              <td>$1.91*</td>
+              <td class="delta-up">+72.2%</td>
+            </tr>
+            <tr>
+              <td>業外損益 (Non-OP)</td>
+              <td>$0.55</td>
+              <td>$1.12</td>
+              <td>$1.18</td>
+              <td class="delta-down">-53.4%</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>本期淨利</td>
+              <td><strong>$3.06</strong></td>
+              <td>$3.56</td>
+              <td>$4.00</td>
+              <td class="delta-down">-23.5%</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size: 10px; color: var(--text-muted); margin-top: 8px;">* 註：2025 Q1 費用與利潤已剔除呆帳轉回利益 NT$53.51 億 (Pro-forma 基礎進行 YoY 比較)。</p>
+      </div>
+
+      <!-- Table 2: Segment Breakdown -->
+      <div class="table-card">
+        <div class="table-title">主要事業部營收表現 (億美元)</div>
+        <table>
+          <thead>
+            <tr>
+              <th>事業部 (BG)</th>
+              <th>營收金額</th>
+              <th>占比 %</th>
+              <th>YoY %</th>
+              <th>營業利益率</th>
+              <th>市場地位 & AI 指標</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="segment-badge badge-enterprise">Enterprise</span> 伺服器</td>
+              <td><strong>$22.44</strong></td>
+              <td>37.0 %</td>
+              <td class="delta-up">+190.0%</td>
+              <td>未揭露</td>
+              <td>AI Server 營收暴增 3 倍 (Blackwell 平台)</td>
+            </tr>
+            <tr>
+              <td><span class="segment-badge badge-gamer">Gamer</span> 電競生態系</td>
+              <td><strong>$21.83</strong></td>
+              <td>36.0 %</td>
+              <td class="delta-up">+20.0%</td>
+              <td>未揭露</td>
+              <td>全球第一電競品牌 / RTX 50 顯卡帶動</td>
+            </tr>
+            <tr>
+              <td><span class="segment-badge badge-consumer">Consumer</span> 消費性 PC</td>
+              <td><strong>$16.37</strong></td>
+              <td>27.0 %</td>
+              <td class="delta-up">+6.0%</td>
+              <td>未揭露</td>
+              <td>AI PC 占 Consumer 營收比例 > 20%</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>品牌合併總計</td>
+              <td><strong>$60.64</strong></td>
+              <td>100 %</td>
+              <td class="delta-up">+44.0%</td>
+              <td>5.4 %</td>
+              <td>雙引擎 (AI Server + 商用 PC 60% YoY) 驅動</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Outlook Paragraph -->
+    <section class="outlook-box">
+      <div class="outlook-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        <span>後續展望與營運指標 (2026 Q2 Outlook)</span>
+      </div>
+      <p class="outlook-text">
+        <strong>Server 業務高速放量，PC 面臨季節性淡季調降</strong>。公司預期 2026 Q2 的 <strong>Server 營收將季增 +50%、年增 +200%</strong>，維持超高成長曲線；然而，<strong>PC 業務預估將出現 QoQ -10% 至 -15% 的下滑</strong>（但 YoY 仍有 +10% 至 +15% 成長）。為此，公司本季提前儲備了高達 <strong>77.22 億美元</strong>的存貨 (DIO : 122 天)，積極備料以因應 Server 大量出貨。
+      </p>
+      <div class="outlook-grid">
+        <div class="outlook-item">
+          <div class="outlook-label">PC 營收展望 (QoQ)</div>
+          <div class="outlook-val" style="color: #f87171;">-10% ~ -15%</div>
+        </div>
+        <div class="outlook-item">
+          <div class="outlook-label">Server 營收展望 (QoQ)</div>
+          <div class="outlook-val" style="color: #34d399;">+50.0 %</div>
+        </div>
+        <div class="outlook-item">
+          <div class="outlook-label">關鍵存貨週轉指標 (DIO)</div>
+          <div class="outlook-val" style="color: #f59e0b;">122 天 (前季: 104天)</div>
+        </div>
+        <div class="outlook-item">
+          <div class="outlook-label">流動比率 / 負債比率</div>
+          <div class="outlook-val">1.47x / 53.1%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div>資料來源：ASUS 歷季法說會簡報 (2025Q1 - 2026Q1)</div>
+      <div>
+        <span>分析審查人：財務分析師</span>
+        <div class="signature-line">簽名蓋章</div>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
